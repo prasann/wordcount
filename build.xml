@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="Wordcount" default="archive">
+    <property name="build.classes.dir" location="build/classes"/>
+
+    <target name="clean" description="Cleans up the build artifacts">
+        <delete dir="build" failonerror="false"/>
+        <delete dir="dist" failonerror="false"/>
+    </target>
+
+    <target name="init" description="Create build and Dist dirs">
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="dist"/>
+    </target>
+
+    <path id="compile.classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="compile" depends="clean,init" description="Compiles the source">
+        <javac destdir="${build.classes.dir}" debug="true" includeantruntime="true">
+            <src location="src"/>
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="archive" depends="compile" description="Creates an executable JAR with dependencies">
+        <jar destfile="dist/wordcount.jar">
+            <zipgroupfileset dir="lib">
+                <include name="*"/>
+            </zipgroupfileset>
+            <fileset dir="${build.classes.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="com.mapreduce.Driver"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+        </jar>
+    </target>
+</project>
