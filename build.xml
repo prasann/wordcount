@@ -26,7 +26,7 @@
     </target>
 
     <target name="archive" depends="compile" description="Creates an executable JAR with dependencies">
-        <jar destfile="dist/wordcount.jar">
+        <jar destfile="dist/wordcount.jar">                                        
             <zipgroupfileset dir="lib">
                 <include name="*"/>
             </zipgroupfileset>
@@ -34,7 +34,7 @@
                 <include name="**/*.*"/>
             </fileset>
             <manifest>
-                <attribute name="Main-Class" value="com.mapreduce.Driver"/>
+                <attribute name="Main-Class" value="com.mapreduce.WordCount"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
         </jar>

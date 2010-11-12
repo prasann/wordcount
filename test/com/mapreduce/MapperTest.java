@@ -1,6 +1,7 @@
 package com.mapreduce;
 
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mrunit.mapreduce.MapDriver;
 import org.apache.hadoop.mrunit.types.Pair;
@@ -16,14 +17,14 @@ import static org.junit.Assert.fail;
 
 public class MapperTest {
     private org.apache.hadoop.mapreduce.Mapper mapper;
-    private MapDriver<Text, Text, Text, IntWritable> mapDriver;
+    private MapDriver<LongWritable, Text, Text, IntWritable> mapDriver;
     private List<Pair<Text, IntWritable>> intermediateKeys;
     private Text sampleText;
 
     @Test
     public void shouldTestMapper() {
         mapper = new Map();
-        mapDriver = new MapDriver<Text, Text, Text, IntWritable>(mapper);
+        mapDriver = new MapDriver<LongWritable, Text, Text, IntWritable>(mapper);
         intermediateKeys = new ArrayList<Pair<Text, IntWritable>>();
         sampleText = new Text("This is a sample Text This is a sample Text");
 
