@@ -2,10 +2,10 @@ package com.setup;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3Object;
 
 import java.io.File;
-import java.util.List;
 
 public class S3Setup {
     private AmazonS3Client amazonS3Client;
@@ -27,8 +27,16 @@ public class S3Setup {
         amazonS3Client.putObject(bucketName, key, file);
     }
 
+    public S3Object getObject(String bucketName,String key){
+        return amazonS3Client.getObject(bucketName,key);
+    }
+
+    public void deleteObject(String bucketName,String key){
+        amazonS3Client.deleteObject(bucketName,key);
+    }
+
     public void deleteBucket(String bucketName) {
-        if (!amazonS3Client.doesBucketExist(bucketName))
+        if (amazonS3Client.doesBucketExist(bucketName))
             amazonS3Client.deleteBucket(bucketName);
 
     }
