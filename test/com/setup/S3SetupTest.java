@@ -1,7 +1,6 @@
 package com.setup;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,13 +13,13 @@ import static org.junit.Assert.fail;
 
 
 public class S3SetupTest {
-    private S3Setup s3;
+    private S3 s3;
     private String bucketName;
 
     @Before
     public void setUp() {
         bucketName = "xconftest1";
-        s3 = new S3Setup(new Credentials());
+        s3 = new S3(new Credentials());
     }
 
     @Test

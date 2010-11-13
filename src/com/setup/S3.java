@@ -2,15 +2,14 @@ package com.setup;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3Object;
 
 import java.io.File;
 
-public class S3Setup {
+public class S3 {
     private AmazonS3Client amazonS3Client;
 
-    public S3Setup(AWSCredentials awsCredentials) {
+    public S3(AWSCredentials awsCredentials) {
         amazonS3Client = new AmazonS3Client(awsCredentials);
     }
 
