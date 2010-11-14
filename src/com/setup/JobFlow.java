@@ -10,14 +10,14 @@ import com.amazonaws.services.elasticmapreduce.model.StepConfig;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class EMR {
+public class JobFlow {
     private AmazonElasticMapReduceClient amazonElasticMapReduceClient;
 
-    public EMR(AWSCredentials awsCredentials) {
+    public JobFlow(AWSCredentials awsCredentials) {
         amazonElasticMapReduceClient = new AmazonElasticMapReduceClient(awsCredentials);
     }
 
-    public void createJobFlow(String jobName){
+    public void create(String jobName){
         RunJobFlowRequest runJobFlowRequest = new RunJobFlowRequest();
         runJobFlowRequest.setName(jobName);
         runJobFlowRequest.setInstances(instances());
@@ -56,7 +56,7 @@ public class EMR {
     }
 
     public static void main(String[] args) {
-        EMR emr = new EMR(new Credentials());
-        emr.createJobFlow("test1");
+        JobFlow jobFlow = new JobFlow(new Credentials());
+        jobFlow.create("test1");
     }
 }
